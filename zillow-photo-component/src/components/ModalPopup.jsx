@@ -8,7 +8,9 @@ class ModalPopup extends Component {
 
     this.state = {
       isOpen: false,
-      imageSelected: {}};
+      imageSelected: {},
+      currentImageIndex: 0
+    };
   }
 
   // Handle forward arrow click
@@ -16,12 +18,16 @@ class ModalPopup extends Component {
     const currentImageIndex = this.getIndexOfCurrentImage(currentImage);
     const { imagesArr } = this.props;
 
-    if(currentImageIndex !== -1 && (currentImageIndex + 1 < imagesArr.length)) {
-      this.setState (
-        {
-          imageSelected : imagesArr[currentImageIndex + 1]
-        }
-      );
+    if(currentImageIndex !== -1) {
+      console.log(currentImageIndex + 1);
+      if(currentImageIndex + 1 < imagesArr.length) {
+        this.setState (
+          {
+            imageSelected : imagesArr[currentImageIndex + 1],
+            currentImageIndex : currentImageIndex + 1
+          }
+        );
+      }
     }
     else {
       alert('error occured while opening the image');
@@ -33,12 +39,15 @@ class ModalPopup extends Component {
     const currentImageIndex = this.getIndexOfCurrentImage(currentImage);
     const { imagesArr } = this.props;
 
-    if(currentImageIndex !== -1 && (currentImageIndex - 1 >= 0)) {
-      this.setState (
-        {
-          imageSelected : imagesArr[currentImageIndex -1]
-        }
-      );
+    if(currentImageIndex !== -1) {
+      if(currentImageIndex - 1 >= 0) {
+        this.setState (
+          {
+            imageSelected : imagesArr[currentImageIndex -1],
+            currentImageIndex : currentImageIndex -1
+          }
+        );
+      }
     }
     else {
       alert('error occured while opening the image');
@@ -65,6 +74,8 @@ class ModalPopup extends Component {
       return null;
     }
 
+    const { imagesArr } = this.props;
+
     return (
       <div className="backdropStyle">
         <div className="modalStyle">
@@ -74,18 +85,25 @@ class ModalPopup extends Component {
             X
           </button>
           <div className="navigationHolder">
-            <img src={"arrow_back.svg"}
-            onClick={this.showPreviousImage.bind(this,
+            { this.state.currentImageIndex  === 0
+              ? <div></div>
+              : <img src={"arrow_back.svg"}
+                onClick={this.showPreviousImage.bind(this,
                 this.state.imageSelected.url || this.props.imageSelected.url)}/>
+            }
             <div
               className="image_large_placeholder"
-              onClick={this.showNextImage.bind(this, this.state.imageSelected)}>
+              onClick={this.showNextImage.bind(this, this.state.imageSelected.url)}>
                 <img src={this.state.imageSelected.url || this.props.imageSelected.url} className="image"/>
                 <span className="image_large_caption">{this.state.imageSelected.caption || this.props.imageSelected.caption}</span>
             </div>
-            <img src={"arrow_forward.svg"}
-              onClick={this.showNextImage.bind(this,
-                  this.state.imageSelected.url || this.props.imageSelected.url)}/>
+            { this.state.currentImageIndex === imagesArr.length - 1
+              ? <div></div>
+              : <img src={"arrow_forward.svg"}
+                onClick={this.showNextImage.bind(this,
+                    this.state.imageSelected.url || this.props.imageSelected.url)}/>
+            }
+
           </div>
         </div>
       </div>
