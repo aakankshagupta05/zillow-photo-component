@@ -36,21 +36,27 @@ class PhotoGallery extends Component {
     document.removeEventListener("keydown", this.handleEsc, false);
   }
 
+  // Open the modal dialog with selected image
   showImage(imageSelected) {
-    this.toggleModal();
+    this.toggleModal(true);
     this.setState ( { imageSelected })
   }
 
+  // handle esc key to close the modal dialog
   handleEsc = (event) => {
     if(event.keyCode === 27) {
-      this.toggleModal();
+      this.toggleModal(false);
     }
   }
 
-  toggleModal = () => {
+  // toggle display of modal dialog
+  toggleModal = (isOpen) => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen
     });
+    if(!isOpen) {
+      this.setState ( { imageSelected: {} })
+    }
   }
 
   render () {
@@ -67,6 +73,7 @@ class PhotoGallery extends Component {
         <ModalPopup
           show={this.state.isOpen}
           onClose={this.toggleModal}
+          imagesArr={images}
           imageSelected={this.state.imageSelected}>
           Here's some content for the modal
         </ModalPopup>
