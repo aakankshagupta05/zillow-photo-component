@@ -22,26 +22,65 @@
   font-size: large;
 }
 
+.image_container {
+  margin: 0 10% 0 15%;
+}
+
 .image_placeholder {
-  width: 400px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   float: left;
-  margin: 10px;
+  margin: 15px;
+  position: relative;
+}
+
+.image_large_placeholder {
+  width: 450px;
+  height: 450px;
+  margin: auto;
   position: relative;
 }
 
 .image {
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 
 .image_caption {
   position: absolute;
   top: 50%;
-  left: 50%;
-  font-size: 1.5em;
+  left: 25%;
+  font-size: 1.0em;
   color: white;
 }
+
+.image_large_caption {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  font-size: 2.0em;
+  color: white;
+}
+
+.backdropStyle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modalStyle {
+  background-color: lightgray;
+  border-radius: 0.5em;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  padding: 30px;
+  position: relative;
+};
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
