@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 50px;
   padding: 20px;
   color: white;
 }
@@ -20,6 +20,27 @@
 
 .App-intro {
   font-size: large;
+}
+
+.image_placeholder {
+  width: 400px;
+  height: 500px;
+  float: left;
+  margin: 10px;
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
+
+.image_caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.5em;
+  color: white;
 }
 
 @keyframes App-logo-spin {
