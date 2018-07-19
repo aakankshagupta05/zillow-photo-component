@@ -62,7 +62,7 @@ class ModalPopup extends Component {
     console.log('Touch end');
     const startPos = this.state.touchStartPos;
     const endPos = event.changedTouches[0].clientX;
- 
+
     if(endPos - startPos > 0) {
       this.showNextImage();
     }
@@ -108,7 +108,7 @@ class ModalPopup extends Component {
 
 
   // Handle back arrow click
-  showPreviousImage() {
+  showPreviousImage = () => {
     const currentImage =
       this.state.imageSelected.url || this.props.imageSelected.url;
     const currentImageIndex = this.getIndexOfCurrentImage(currentImage);
