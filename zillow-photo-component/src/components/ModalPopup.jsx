@@ -62,7 +62,7 @@ class ModalPopup extends Component {
     console.log('Touch end');
     const startPos = this.state.touchStartPos;
     const endPos = event.changedTouches[0].clientX;
- console.log(endPos - startPos);
+ 
     if(endPos - startPos > 0) {
       this.showNextImage();
     }
