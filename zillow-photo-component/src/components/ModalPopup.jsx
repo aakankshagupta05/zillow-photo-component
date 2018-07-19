@@ -79,7 +79,7 @@ class ModalPopup extends Component {
   }
 
   // handle display of next image, via arrow key, mouse click or swipe
-  showNextImage = () => { console.log('sadsadsadsadsa');
+  showNextImage = () => {
     const currentImage =
       this.state.imageSelected.url || this.props.imageSelected.url;
     const { imagesArr } = this.props;
